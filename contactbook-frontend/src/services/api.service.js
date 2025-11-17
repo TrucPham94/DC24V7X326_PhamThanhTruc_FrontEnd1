@@ -5,12 +5,11 @@ const commonConfig = {
     "Content-Type": "application/json",
     Accept: "application/json",
   },
-  timeout: 15000,
 };
 
-export default function createApi(baseURL) {
-  const instance = axios.create({
+export default (baseURL) => {
+  return axios.create({
     baseURL,
     ...commonConfig,
   });
-}
+};

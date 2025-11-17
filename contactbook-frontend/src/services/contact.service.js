@@ -1,26 +1,17 @@
-import { api } from "./api.service";
+import createApiClient from "./api.service";
 
-const resource = "/api/contacts"; // path thực tế của backend
+class ContactService {
+  constructor(baseUrl = "/api/contacts") {
+    this.api = createApiClient(baseUrl);
+  }
 
-export default {
   async getAll() {
-    const { data } = await api.get(resource);
-    return data;
-  },
-  async get(id) {
-    const { data } = await api.get(`${resource}/${id}`);
-    return data;
-  },
-  async create(payload) {
-    const { data } = await api.post(resource, payload);
-    return data;
-  },
-  async update(id, payload) {
-    const { data } = await api.put(`${resource}/${id}`, payload);
-    return data;
-  },
-  async delete(id) {
-    const { data } = await api.delete(`${resource}/${id}`);
-    return data;
-  },
-};
+    return (await this.api.get("/")).data;
+  }
+
+  async deleteAll() {
+    return (await this.api.delete("/")).data;
+  }
+}
+
+export default new ContactService();
