@@ -7,6 +7,20 @@ const routes = [
     name: "contactbook",
     component: ContactBook,
   },
+  // Hiệu chỉnh liên hệ
+  {
+    path: "/contacts/:id",
+    name: "contact.edit",
+    component: () => import("@/views/ContactEdit.vue"),
+    props: true,
+  },
+  // Thêm mới liên hệ
+  {
+    path: "/contacts/add",
+    name: "contact.add",
+    component: () => import("@/views/ContactAdd.vue"),
+  },
+  // 404
   {
     path: "/:pathMatch(.*)*",
     name: "notfound",
